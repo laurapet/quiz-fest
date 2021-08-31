@@ -1,0 +1,8 @@
+{
+  "name": "QuizFest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "d36d5344"
+}
