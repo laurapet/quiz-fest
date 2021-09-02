@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Haptics} from "@capacitor/haptics";
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  const // @ts-ignore
+  hapticsVibrate = async () => {
+    await Haptics.vibrate();
+  };
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   constructor() {}
-
 }
+
+
