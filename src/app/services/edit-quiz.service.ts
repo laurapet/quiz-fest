@@ -6,4 +6,12 @@ import { Injectable } from '@angular/core';
 export class EditQuizService {
 
   constructor() { }
+
+  public createQuiz(quiz: QuizEdit){
+
+  }
+
+  public updateQuiz(quiz: QuizEdit){
+
+  }
 }

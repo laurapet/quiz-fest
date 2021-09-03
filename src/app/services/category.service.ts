@@ -6,4 +6,12 @@ import { Injectable } from '@angular/core';
 export class CategoryService {
 
   constructor() { }
+
+  public getAllCategorys(): string[]{
+    return [];
+  }
+
+  public getQuizzesFromCategory(name: string): QuizList[]{
+    return [];
+  }
 }
