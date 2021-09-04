@@ -6,7 +6,9 @@
       <ion-title>
         {{title}}
       </ion-title>
-
+    <ion-title>
+      Points {{quiz.currentPoints}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -18,7 +20,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers; let i = index" [attr.data-index]="i">
-        <ion-card [color]="answer.inCorrect ? 'success' : 'white'" (click)="answerQuestion(i)">
+        <ion-card [color]="selectColor(answer.inCorrect)" (click)="answerQuestion(i)">
           <ion-card-content>
             {{answer.text}}
           </ion-card-content>

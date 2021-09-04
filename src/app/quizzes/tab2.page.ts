@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActionSheetController, ModalController} from "@ionic/angular";
+import {ModalController} from "@ionic/angular";
 import {CategoryService} from "../services/category.service";
 import {QuizList} from "../entitys/QuizList";
 import {PlayQuizComponent} from "../play-quiz/play-quiz.component";

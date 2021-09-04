@@ -45,6 +45,20 @@ export class PlayQuizComponent {
 
     if(this.result.points === 0){
       await Haptics.vibrate();
+    }else {
+      this.quiz.currentPoints += this.result.points;
+    }
+  }
+
+  selectColor(correct: boolean): string{
+    if(correct===true){
+      return 'success';
+    }
+    if(correct===false){
+      return 'danger';
+    }
+    if(correct === undefined){
+      return 'white';
     }
   }
 }
