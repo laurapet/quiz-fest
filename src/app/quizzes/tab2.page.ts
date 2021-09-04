@@ -12,8 +12,13 @@ import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
 export class Tab2Page {
 
   currentCategory = 'cat';
+  quizzes: QuizList[];
+  categories: string[];
 
-  constructor(public modalController: ModalController, public categoryService: CategoryService) {}
+  constructor(public modalController: ModalController, public categoryService: CategoryService) {
+    this.loadEntries();
+    this.getCategoryNames();
+  }
 
   async openQuiz(quiz: QuizList){
     const modal = await this.modalController.create({
@@ -24,6 +29,21 @@ export class Tab2Page {
       }
     });
     return await modal.present();
+  }
+
+  loadEntries(){
+    this.categoryService.getQuizzesFromCategory(this.currentCategory)
+      .subscribe(quizzes =>{
+        //console.log(quizzes);
+        this.quizzes = quizzes;
+      });
+  }
+
+  getCategoryNames(){
+    this.categoryService.getAllCategorys().subscribe((categories)=>{
+      console.log(categories);
+      this.categories = categories;
+    });
   }
 
 }
