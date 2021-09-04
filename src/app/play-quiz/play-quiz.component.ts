@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Answer} from "../entitys/Answer";
 import {ModalController} from "@ionic/angular";
 import {PlayService} from "../services/play.service";
@@ -11,9 +11,8 @@ import {Haptics} from "@capacitor/haptics";
   templateUrl: './play-quiz.component.html',
   styleUrls: ['./play-quiz.component.scss'],
 })
-export class PlayQuizComponent {
+export class PlayQuizComponent implements OnInit{
 
-  answers: Answer[] = [];
   endReached = false;
   quiz: PlayQuiz;
   result: Result;
@@ -22,9 +21,11 @@ export class PlayQuizComponent {
   private answered: boolean;
 
   constructor(public modalController: ModalController, public playService: PlayService) {
+  }
+
+  ngOnInit() {
     console.log(this.link);
     this.getQuiz();
-    //this.answers = [{text: "jhsdkjfh", inCorrect: null}, {text: "slkdjflkjsd", inCorrect: null}];
   }
 
 
@@ -66,7 +67,7 @@ export class PlayQuizComponent {
   }
 
   getQuiz(){
-    this.playService.selectQuiz('quizzes/100/play').subscribe((question)=>{
+    this.playService.selectQuiz(this.link).subscribe((question)=>{
       this.quiz = {title: this.title,
                   currentQuestion: {
                       text: question.text,
