@@ -36,21 +36,22 @@ export class PlayQuizComponent implements OnInit{
   }
 
   async answerQuestion(nr: number){
-    this.result = this.playService.answerQuestion(this.quiz, nr);
+     this.playService.answerQuestion(this.quiz, nr).subscribe(async res => {
+       this.result = res;
+       for (let answer of this.quiz.currentQuestion.answers) {
+         if (this.result.correctAnswers.includes(answer.nr)) {
+           answer.inCorrect = true;
+         } else {
+           answer.inCorrect = false;
+         }
+       }
 
-    for(let i=0; i < this.quiz.currentQuestion.answers.length; i++){
-      if(this.result.correctAnswer === i){
-        this.quiz.currentQuestion.answers[i].inCorrect = true;
-      } else {
-        this.quiz.currentQuestion.answers[i].inCorrect = false;
-      }
-    }
-
-    if(this.result.points === 0){
-      await Haptics.vibrate();
-    }else {
-      this.quiz.currentPoints += this.result.points;
-    }
+       if (this.result.points === 0) {
+         await Haptics.vibrate();
+       } else {
+         this.quiz.currentPoints += this.result.points;
+       }
+     });
 
   }
 
@@ -76,7 +77,7 @@ export class PlayQuizComponent implements OnInit{
                   currentPoints: 0};
       for(let x  = 1; question.answers[x] != null; x++){
         console.log(question.answers[x]);
-        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined});
+        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
       }
     });
   }
@@ -87,7 +88,8 @@ export class PlayQuizComponent implements OnInit{
       console.log(this.result);
       //this.dismiss();
       if(this.result.linkToNextQuestion != null && this.result.linkToNextQuestion !== ''){
-        this.quiz = this.playService.nextQuestion(this.quiz);
+        //this.quiz = this.playService.nextQuestion(this.quiz);
+        console.log(this.result.linkToNextQuestion);
       }else {
         this.endReached = true;
       }

@@ -11,7 +11,7 @@ import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
 })
 export class Tab2Page {
 
-  currentCategory = null;
+  currentCategory = 'Natur';
   quizzes: QuizList[];
   categories: string[];
 
