@@ -25,7 +25,7 @@ export class Tab2Page {
       component: PlayQuizComponent,
       componentProps: {
         title: quiz.title,
-        link : quiz.linkToPlay
+        link : quiz.linkToQuiz
       }
     });
     return await modal.present();
@@ -34,14 +34,15 @@ export class Tab2Page {
   loadEntries(){
     this.categoryService.getQuizzesFromCategory(this.currentCategory)
       .subscribe(quizzes =>{
-        //console.log(quizzes);
+        console.log(quizzes);
         this.quizzes = quizzes;
+        console.log(this.quizzes);
       });
   }
 
   getCategoryNames(){
     this.categoryService.getAllCategorys().subscribe((categories)=>{
-      console.log(categories);
+      //console.log(categories);
       this.categories = categories;
     });
   }

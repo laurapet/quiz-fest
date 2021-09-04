@@ -6,12 +6,12 @@
       <ion-title>
         {{title}}
       </ion-title>
-    <ion-title size="small" *ngIf="!endReached">
+    <ion-title size="small" *ngIf="!endReached && quiz">
       Points {{quiz.currentPoints}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content (click)="continue()">
+<ion-content (click)="continue()" *ngIf="quiz">
   <ion-card>
     <ion-card-header>
       <ion-card-title>

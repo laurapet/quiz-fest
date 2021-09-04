@@ -13,7 +13,7 @@ import {Haptics} from "@capacitor/haptics";
 })
 export class PlayQuizComponent {
 
-  answers: Answer[];
+  answers: Answer[] = [];
   endReached = false;
   quiz: PlayQuiz;
   result: Result;
@@ -22,8 +22,9 @@ export class PlayQuizComponent {
   private answered: boolean;
 
   constructor(public modalController: ModalController, public playService: PlayService) {
-    this.quiz = playService.selectQuiz(this.link);
-    this.answers = [{text: "jhsdkjfh", inCorrect: null}, {text: "slkdjflkjsd", inCorrect: null}];
+    console.log(this.link);
+    this.getQuiz();
+    //this.answers = [{text: "jhsdkjfh", inCorrect: null}, {text: "slkdjflkjsd", inCorrect: null}];
   }
 
 
@@ -62,6 +63,21 @@ export class PlayQuizComponent {
     if(correct === undefined){
       return 'white';
     }
+  }
+
+  getQuiz(){
+    this.playService.selectQuiz('quizzes/100/play').subscribe((question)=>{
+      this.quiz = {title: this.title,
+                  currentQuestion: {
+                      text: question.text,
+                      answers: []
+                  },
+                  currentPoints: 0};
+      for(let x  = 1; question.answers[x] != null; x++){
+        console.log(question.answers[x]);
+        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined});
+      }
+    });
   }
 
   async continue() {
