@@ -4,6 +4,7 @@ import {ModalController} from "@ionic/angular";
 import {PlayService} from "../services/play.service";
 import {PlayQuiz} from "../entitys/PlayQuiz";
 import {Result} from "../entitys/Result";
+import {Haptics} from "@capacitor/haptics";
 
 @Component({
   selector: 'app-play-quiz',
@@ -17,6 +18,7 @@ export class PlayQuizComponent {
   result: Result;
   @Input() title: string;
   @Input() link: string;
+  private answered: boolean;
 
   constructor(public modalController: ModalController, public playService: PlayService) {
     this.quiz = playService.selectQuiz(this.link);
@@ -30,7 +32,19 @@ export class PlayQuizComponent {
     });
   }
 
-  answerQuestion(nr: number){
+  async answerQuestion(nr: number){
     this.result = this.playService.answerQuestion(this.quiz, nr);
+
+    for(let i=0; i < this.quiz.currentQuestion.answers.length; i++){
+      if(this.result.correctAnswer === i){
+        this.quiz.currentQuestion.answers[i].inCorrect = true;
+      } else {
+        this.quiz.currentQuestion.answers[i].inCorrect = false;
+      }
+    }
+
+    if(this.result.points === 0){
+      await Haptics.vibrate();
+    }
   }
 }

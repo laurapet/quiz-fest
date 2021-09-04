@@ -35,6 +35,10 @@ export class PlayService {
   }
 
   public answerQuestion(quiz: PlayQuiz, answer: number): Result{
-    return null;
+    return {
+      correctAnswer: answer,
+      points: 100,
+      linkToNextQuestion: ''
+    };
   }
 }

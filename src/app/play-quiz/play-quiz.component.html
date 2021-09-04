@@ -17,8 +17,8 @@
   </ion-card>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers">
-        <ion-card>
+      <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers; let i = index" [attr.data-index]="i">
+        <ion-card [color]="answer.inCorrect ? 'success' : 'white'" (click)="answerQuestion(i)">
           <ion-card-content>
             {{answer.text}}
           </ion-card-content>
