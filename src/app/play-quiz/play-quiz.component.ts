@@ -36,7 +36,7 @@ export class PlayQuizComponent implements OnInit{
   }
 
   async answerQuestion(nr: number){
-     this.playService.answerQuestion(this.quiz, nr).subscribe(async res => {
+     this.playService.answerQuestion(this.link, nr).subscribe(async res => {
        this.result = res;
        for (let answer of this.quiz.currentQuestion.answers) {
          if (this.result.correctAnswers.includes(answer.nr)) {
@@ -79,6 +79,19 @@ export class PlayQuizComponent implements OnInit{
         console.log(question.answers[x]);
         this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
       }
+      this.link = '/'+this.link+'/1';
+    });
+  }
+
+  getQuestion(){
+    this.playService.nextQuestion(this.link).subscribe((question)=>{
+      this.quiz.currentQuestion= {
+        text: question.text,
+        answers: []
+      };
+      for(let x  = 1; question.answers[x] != null; x++){
+        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
+      }
     });
   }
 
@@ -89,11 +102,15 @@ export class PlayQuizComponent implements OnInit{
       //this.dismiss();
       if(this.result.linkToNextQuestion != null && this.result.linkToNextQuestion !== ''){
         //this.quiz = this.playService.nextQuestion(this.quiz);
-        console.log(this.result.linkToNextQuestion);
+        this.link = this.result.linkToNextQuestion;
+        this.result = null;
+
+        this.getQuestion();
+
+        //console.log(this.result.linkToNextQuestion);
       }else {
         this.endReached = true;
       }
-      this.result = null;
     }
 
   }

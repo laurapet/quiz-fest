@@ -30,11 +30,11 @@ export class PlayService {
       });*/
   }
 
-  public nextQuestion(quiz: PlayQuiz): Observable<PlayQuestion>{
-    return null;
+  public nextQuestion(linkToQuestion: string): Observable<PlayQuestion>{
+    return this.http.get<PlayQuestion>('http://localhost:8080/quiz-fest/api'+linkToQuestion);
   }
 
-  public answerQuestion(quiz: PlayQuiz, answer: number): Observable<Result>{
-    return this.http.post<Result>('http://localhost:8080/quiz-fest/api'+'/quizzes/100/play/1/'+answer,{});
+  public answerQuestion(quiz: string, answer: number): Observable<Result>{
+    return this.http.post<Result>('http://localhost:8080/quiz-fest/api'+quiz+'/'+answer,{});
   }
 }
