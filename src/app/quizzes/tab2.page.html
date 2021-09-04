@@ -14,7 +14,7 @@
   <ion-list *ngIf="currentCategory">
     <ion-item *ngFor="let quiz of categoryService.getQuizzesFromCategory(currentCategory)">
       {{quiz.title}}
-      <ion-button slot="end" size="medium">play <ion-icon name="play" slot="end"></ion-icon></ion-button>
+      <ion-button slot="end" size="medium" (click)="openQuiz(quiz)">play <ion-icon name="play" slot="end" ></ion-icon></ion-button>
     </ion-item>
 
   </ion-list>

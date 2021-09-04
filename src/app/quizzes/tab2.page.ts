@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import {ActionSheetController} from "@ionic/angular";
+import {ActionSheetController, ModalController} from "@ionic/angular";
 import {CategoryService} from "../services/category.service";
+import {QuizList} from "../entitys/QuizList";
+import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
 
 @Component({
   selector: 'app-tab2',
@@ -11,50 +13,17 @@ export class Tab2Page {
 
   currentCategory = 'cat';
 
-  constructor(public actionSheetController: ActionSheetController,public categoryService: CategoryService) {}
+  constructor(public modalController: ModalController, public categoryService: CategoryService) {}
 
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'caret-forward-circle',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
+  async openQuiz(quiz: QuizList){
+    const modal = await this.modalController.create({
+      component: PlayQuizComponent,
+      componentProps: {
+        title: quiz.title,
+        link : quiz.linkToPlay
+      }
     });
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    return await modal.present();
   }
 
 }
