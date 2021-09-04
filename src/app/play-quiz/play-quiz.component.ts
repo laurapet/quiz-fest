@@ -36,23 +36,24 @@ export class PlayQuizComponent implements OnInit{
   }
 
   async answerQuestion(nr: number){
-     this.playService.answerQuestion(this.link, nr).subscribe(async res => {
-       this.result = res;
-       for (let answer of this.quiz.currentQuestion.answers) {
-         if (this.result.correctAnswers.includes(answer.nr)) {
-           answer.inCorrect = true;
-         } else {
-           answer.inCorrect = false;
-         }
-       }
+    if(this.result == null) {
+      this.playService.answerQuestion(this.link, nr).subscribe(async res => {
+        this.result = res;
+        for (let answer of this.quiz.currentQuestion.answers) {
+          if (this.result.correctAnswers.includes(answer.nr)) {
+            answer.inCorrect = true;
+          } else {
+            answer.inCorrect = false;
+          }
+        }
 
-       if (this.result.points === 0) {
-         await Haptics.vibrate();
-       } else {
-         this.quiz.currentPoints += this.result.points;
-       }
-     });
-
+        if (this.result.points === 0) {
+          await Haptics.vibrate();
+        } else {
+          this.quiz.currentPoints += this.result.points;
+        }
+      });
+    }
   }
 
   selectColor(correct: boolean): string{
