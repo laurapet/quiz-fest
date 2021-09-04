@@ -12,15 +12,15 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      Quiestion text sjadjfkhsdfkj
+      {{quiz.currentQuestion.text}}
     </ion-card-content>
   </ion-card>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let xyz of answers">
+      <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers">
         <ion-card>
           <ion-card-content>
-            {{xyz.text}}
+            {{answer.text}}
           </ion-card-content>
         </ion-card>
       </ion-col>
