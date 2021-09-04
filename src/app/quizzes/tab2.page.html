@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <ion-select interface="action-sheet" value="none">
+      <ion-select interface="action-sheet" [(ngModel)]="currentCategory" placeholder="select category" (ionChange)="loadEntries()">
         <!--ion-select-option value="none" disabled>No Category Selected</ion-select-option-->
-        <ion-select-option *ngFor="let category of categories" [value]="category">{{category}}</ion-select-option>
+        <ion-select-option *ngFor="let category of categories" [value]="category" >{{category}}</ion-select-option>
       </ion-select>
     </ion-title>
   </ion-toolbar>
@@ -11,7 +11,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-list *ngIf="currentCategory">
+  <ion-list *ngIf="currentCategory ">
     <ion-item *ngFor="let quiz of quizzes">
       {{quiz.title}}
       <ion-button slot="end" size="medium" (click)="openQuiz(quiz)">play <ion-icon name="play" slot="end" ></ion-icon></ion-button>

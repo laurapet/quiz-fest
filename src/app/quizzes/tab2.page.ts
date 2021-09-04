@@ -11,7 +11,7 @@ import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
 })
 export class Tab2Page {
 
-  currentCategory = 'cat';
+  currentCategory = null;
   quizzes: QuizList[];
   categories: string[];
 
@@ -32,12 +32,15 @@ export class Tab2Page {
   }
 
   loadEntries(){
-    this.categoryService.getQuizzesFromCategory(this.currentCategory)
-      .subscribe(quizzes =>{
-        console.log(quizzes);
-        this.quizzes = quizzes;
-        console.log(this.quizzes);
-      });
+    //console.log(this.currentCategory);
+    if(this.currentCategory!= null && this.currentCategory !== ''){
+      this.categoryService.getQuizzesFromCategory(this.currentCategory)
+        .subscribe(quizzes =>{
+         // console.log(quizzes);
+          this.quizzes = quizzes;
+          //console.log(this.quizzes);
+        });
+    }
   }
 
   getCategoryNames(){

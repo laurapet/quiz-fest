@@ -17,7 +17,7 @@ export class CategoryService {
   }
 
   public getQuizzesFromCategory(name: string): Observable<QuizList[]>{
-    return (this.http.get<QuizList[]>('http://localhost:8080/quiz-fest/api/category/Natur'));
+    return (this.http.get<QuizList[]>('http://localhost:8080/quiz-fest/api/category/'+name));
    /* this.http.get('http://localhost:8080/quiz-fest/api/category/Natur').toPromise().then( res => {
       console.log(res);
     });
