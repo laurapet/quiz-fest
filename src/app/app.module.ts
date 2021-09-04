@@ -7,11 +7,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {PlayQuizComponent} from './play-quiz/play-quiz.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PlayQuizComponent],
   entryComponents: [],
   imports: [BrowserModule,
+    CommonModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent}])],
