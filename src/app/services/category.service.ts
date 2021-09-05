@@ -11,10 +11,10 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   public getAllCategorys(): Observable<string[]>{
-    return this.http.get<string[]>('http://localhost:8080/quiz-fest/api/category');
+    return this.http.get<string[]>('/category');
   }
 
   public getQuizzesFromCategory(name: string): Observable<QuizList[]>{
-    return (this.http.get<QuizList[]>('http://localhost:8080/quiz-fest/api/category/'+name));
+    return (this.http.get<QuizList[]>('/category/'+name));
   }
 }

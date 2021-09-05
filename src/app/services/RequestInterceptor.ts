@@ -13,7 +13,8 @@ export class RequestInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     const authReq = req.clone({setHeaders: {
         'content-type': 'application/json'
-      }});
+      },
+      url: 'http://localhost:8080/quiz-fest/api'+req.url});
     return next.handle(authReq);
   }
 }
