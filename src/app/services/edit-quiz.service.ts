@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {QuizEdit} from "../entitys/QuizEdit";
+import {QuizEdit} from '../entitys/QuizEdit';
 
 @Injectable({
   providedIn: 'root'
