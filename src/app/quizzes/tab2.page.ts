@@ -16,7 +16,6 @@ export class Tab2Page {
   categories: string[];
 
   constructor(public modalController: ModalController, public categoryService: CategoryService) {
-    this.loadEntries();
     this.getCategoryNames();
   }
 
@@ -43,6 +42,10 @@ export class Tab2Page {
   getCategoryNames(){
     this.categoryService.getAllCategorys().subscribe((categories)=>{
       this.categories = categories;
+      if(this.currentCategory == null || this.currentCategory === ''){
+        this.currentCategory = this.categories[0];
+        this.loadEntries();
+      }
     });
   }
 
