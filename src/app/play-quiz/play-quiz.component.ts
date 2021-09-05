@@ -17,13 +17,11 @@ export class PlayQuizComponent implements OnInit{
   result: Result;
   @Input() title: string;
   @Input() link: string;
-  private answered: boolean;
 
   constructor(public modalController: ModalController, public playService: PlayService) {
   }
 
   ngOnInit() {
-    console.log(this.link);
     this.getQuiz();
   }
 
@@ -76,7 +74,6 @@ export class PlayQuizComponent implements OnInit{
                   },
                   currentPoints: 0};
       for(let x  = 1; question.answers[x] != null; x++){
-        console.log(question.answers[x]);
         this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
       }
       this.link = '/'+this.link+'/1';

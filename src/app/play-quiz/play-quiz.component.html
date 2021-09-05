@@ -3,9 +3,11 @@
     <ion-button (click)="dismiss()" fill="clear" slot="start">
       <ion-icon name="close" ></ion-icon>
     </ion-button>
-      <ion-title>
-        {{title}}
-      </ion-title>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
     <ion-title size="small" *ngIf="!endReached && quiz">
       Points {{quiz.currentPoints}}
     </ion-title>
