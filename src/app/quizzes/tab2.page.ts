@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {CategoryService} from "../services/category.service";
-import {QuizList} from "../entitys/QuizList";
-import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
+import {ModalController} from '@ionic/angular';
+import {CategoryService} from '../services/category.service';
+import {QuizList} from '../entitys/QuizList';
+import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +11,7 @@ import {PlayQuizComponent} from "../play-quiz/play-quiz.component";
 })
 export class Tab2Page {
 
-  currentCategory = 'Natur';
+  currentCategory = '';
   quizzes: QuizList[];
   categories: string[];
 
@@ -32,20 +32,16 @@ export class Tab2Page {
   }
 
   loadEntries(){
-    //console.log(this.currentCategory);
     if(this.currentCategory!= null && this.currentCategory !== ''){
       this.categoryService.getQuizzesFromCategory(this.currentCategory)
         .subscribe(quizzes =>{
-         // console.log(quizzes);
           this.quizzes = quizzes;
-          //console.log(this.quizzes);
         });
     }
   }
 
   getCategoryNames(){
     this.categoryService.getAllCategorys().subscribe((categories)=>{
-      //console.log(categories);
       this.categories = categories;
     });
   }

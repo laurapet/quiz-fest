@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Answer} from "../entitys/Answer";
-import {ModalController} from "@ionic/angular";
-import {PlayService} from "../services/play.service";
-import {PlayQuiz} from "../entitys/PlayQuiz";
-import {Result} from "../entitys/Result";
-import {Haptics} from "@capacitor/haptics";
+import {ModalController} from '@ionic/angular';
+import {PlayService} from '../services/play.service';
+import {PlayQuiz} from '../entitys/PlayQuiz';
+import {Result} from '../entitys/Result';
+import {Haptics} from '@capacitor/haptics';
 
 @Component({
   selector: 'app-play-quiz',
@@ -39,7 +38,7 @@ export class PlayQuizComponent implements OnInit{
     if(this.result == null) {
       this.playService.answerQuestion(this.link, nr).subscribe(async res => {
         this.result = res;
-        for (let answer of this.quiz.currentQuestion.answers) {
+        for (const answer of this.quiz.currentQuestion.answers) {
           if (this.result.correctAnswers.includes(answer.nr)) {
             answer.inCorrect = true;
           } else {
@@ -99,16 +98,12 @@ export class PlayQuizComponent implements OnInit{
   async continue() {
     await new Promise(f => setTimeout(f, 1500));
     if(this.result != null){
-      console.log(this.result);
-      //this.dismiss();
       if(this.result.linkToNextQuestion != null && this.result.linkToNextQuestion !== ''){
-        //this.quiz = this.playService.nextQuestion(this.quiz);
         this.link = this.result.linkToNextQuestion;
         this.result = null;
 
         this.getQuestion();
 
-        //console.log(this.result.linkToNextQuestion);
       }else {
         this.endReached = true;
       }

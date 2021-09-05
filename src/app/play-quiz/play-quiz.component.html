@@ -36,7 +36,8 @@
     </ion-row>
   </ion-grid>
   <ion-grid>
-    <ion-button *ngIf="endReached" size="large" color="success" expand="block">
+    <!--TODO: save points somewhere-->
+    <ion-button *ngIf="endReached" size="large" color="success" expand="block" (click)="dismiss()">
       Close
       <ion-icon name="checkmark"></ion-icon>
     </ion-button>
