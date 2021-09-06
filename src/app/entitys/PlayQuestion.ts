@@ -2,6 +2,6 @@ import {Answer} from './Answer';
 
 export interface PlayQuestion{
   text: string;
-  answers: Answer[];
+  answers: string[];
   nr: number;
 }

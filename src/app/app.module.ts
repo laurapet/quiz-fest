@@ -7,15 +7,20 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {PlayQuizComponent} from './play-quiz/play-quiz.component';
+import {CommonModule} from '@angular/common';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {RequestInterceptor} from './services/RequestInterceptor';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PlayQuizComponent],
   entryComponents: [],
   imports: [BrowserModule,
+    CommonModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent}])],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

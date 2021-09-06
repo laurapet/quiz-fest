@@ -1,5 +1,5 @@
 export interface Result{
-correctAnswer: number;
+correctAnswers: number[];
 points: number;
 linkToNextQuestion: string;
 }

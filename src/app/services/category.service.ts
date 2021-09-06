@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import {QuizList} from '../entitys/QuizList';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public getAllCategorys(): string[]{
-    return ['Category1', 'Category2', 'Category3', 'Category4'];
+  public getAllCategorys(): Observable<string[]>{
+    return this.http.get<string[]>('/category');
   }
 
-  public getQuizzesFromCategory(name: string): QuizList[]{
-    return [{title: 'xyz', linkToEdit: '', linkToPlay: ''},
-      {title: 'abc', linkToEdit: '', linkToPlay: ''},
-      {title: 'skdgjosdihgoi sdfgidofihgihdiofhg oiehdoihaiert09eß0risbfgvmnbeaär ituhoiahhtjfgbdfiu hguirheishgibsykjdfbg', linkToEdit: '', linkToPlay: ''}];
+  public getQuizzesFromCategory(name: string): Observable<QuizList[]>{
+    return (this.http.get<QuizList[]>('/category/'+name));
   }
 }

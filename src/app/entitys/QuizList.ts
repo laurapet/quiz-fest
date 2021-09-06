@@ -1,5 +1,5 @@
 export interface QuizList{
   title: string;
-  linkToPlay: string;
+  linkToQuiz: string;
   linkToEdit: string;
 }
