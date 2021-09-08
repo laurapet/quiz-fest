@@ -24,8 +24,9 @@
 
   <ion-list>
     
-    <ion-item *ngFor="let quiz of categoryService.getQuizzesFromCategory(currentCategory)">
-      Quiz Title
+    <ion-item *ngFor="let quiz of this.ownQuizzes">
+      {{quiz.title}}
+      
       <ion-icon slot="end" name="play"></ion-icon>
 
       <ion-icon slot="end" name="create"></ion-icon>
