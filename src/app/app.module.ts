@@ -10,6 +10,7 @@ import {PlayQuizComponent} from './play-quiz/play-quiz.component';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './services/RequestInterceptor';
+import {EditquizComponent} from './editquiz/editquiz.component';
 
 @NgModule({
   declarations: [AppComponent, PlayQuizComponent],
@@ -19,8 +20,10 @@ import {RequestInterceptor} from './services/RequestInterceptor';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent}])],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },],
+    RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent},
+      {path: 'editquiz', component: EditquizComponent}])],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

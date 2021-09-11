@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonButton } from '@ionic/angular';
-import { IonList } from '@ionic/angular';
-import { IonItem } from '@ionic/angular';
-import { IonIcon } from '@ionic/angular';
+import {IonButton, ModalController} from '@ionic/angular';
 import { QuizList } from '../entitys/QuizList';
 import { EditQuizService } from '../services/edit-quiz.service';
+import {EditquizComponent} from '../editquiz/editquiz.component';
+import {CategoryService} from '../services/category.service';
 
 @Component({
   selector: 'app-tab3',
@@ -14,9 +13,11 @@ import { EditQuizService } from '../services/edit-quiz.service';
 export class Tab3Page {
 
    ownQuizzes: QuizList[];
+   categories: string[];
 
-  constructor(public editQuizService: EditQuizService) {
+  constructor(public modalController: ModalController, public editQuizService: EditQuizService, public categoryService: CategoryService) {
     this.loadOwnQuizzes();
+    this.getCategoryNames();
   }
 
   loadOwnQuizzes(){
@@ -26,6 +27,25 @@ export class Tab3Page {
       }
     );
     //this.ownQuizzes = this.editQuizService.getOwnQuizzes();
+  }
+
+  getCategoryNames(){
+    this.categoryService.getAllCategorys().subscribe((categories)=>{
+      this.categories = [];
+      this.categories = categories;
+      console.log(categories);
+    });
+  }
+
+  async openQuizEditor(){
+    const modal = await this.modalController.create({
+      component: EditquizComponent,
+      componentProps: {
+        title: 'Create Quiz',
+        categories: this.categories
+      }
+    });
+    return await modal.present();
   }
 
 }
