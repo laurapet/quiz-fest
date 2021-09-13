@@ -38,9 +38,9 @@ export class PlayQuizComponent implements OnInit{
         this.result = res;
         for (const answer of this.quiz.currentQuestion.answers) {
           if (this.result.correctAnswers.includes(answer.nr)) {
-            answer.inCorrect = true;
+            answer.isCorrect = true;
           } else {
-            answer.inCorrect = false;
+            answer.isCorrect = false;
           }
         }
 
@@ -74,7 +74,7 @@ export class PlayQuizComponent implements OnInit{
                   },
                   currentPoints: 0};
       for(let x  = 1; question.answers[x] != null; x++){
-        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
+        this.quiz.currentQuestion.answers.push({text: question.answers[x], isCorrect: undefined, nr: x});
       }
       this.link = '/'+this.link+'/1';
     });
@@ -87,7 +87,7 @@ export class PlayQuizComponent implements OnInit{
         answers: []
       };
       for(let x  = 1; question.answers[x] != null; x++){
-        this.quiz.currentQuestion.answers.push({text: question.answers[x], inCorrect: undefined, nr: x});
+        this.quiz.currentQuestion.answers.push({text: question.answers[x], isCorrect: undefined, nr: x});
       }
     });
   }

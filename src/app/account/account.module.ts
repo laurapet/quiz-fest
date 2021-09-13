@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import {EditquizComponent} from '../editquiz/editquiz.component';
+import {EditquestionComponent} from '../editquestion/editquestion.component';
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -20,6 +21,6 @@ import {BrowserModule} from '@angular/platform-browser';
     Tab3PageRoutingModule,
 
   ],
-  declarations: [Tab3Page, EditquizComponent]
+  declarations: [Tab3Page, EditquizComponent, EditquestionComponent]
 })
 export class Tab3PageModule {}

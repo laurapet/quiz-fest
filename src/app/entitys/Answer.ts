@@ -1,6 +1,6 @@
 export interface Answer{
   text: string;
-  inCorrect: boolean;
+  isCorrect: boolean;
   nr?: number;
 }
 

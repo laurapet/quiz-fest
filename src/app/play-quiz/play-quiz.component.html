@@ -29,7 +29,7 @@
   <ion-grid *ngIf="!endReached">
     <ion-row>
       <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers">
-        <ion-card [color]="selectColor(answer.inCorrect)" (click)="answerQuestion(answer.nr)">
+        <ion-card [color]="selectColor(answer.isCorrect)" (click)="answerQuestion(answer.nr)">
           <ion-card-content>
             {{answer.text}}
           </ion-card-content>

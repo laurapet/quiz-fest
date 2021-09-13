@@ -38,10 +38,11 @@ export class Tab3Page {
   }
 
   async openQuizEditor(){
+
     const modal = await this.modalController.create({
       component: EditquizComponent,
       componentProps: {
-        title: 'Create Quiz',
+        pageTitle: 'Create Quiz',
         categories: this.categories
       }
     });
