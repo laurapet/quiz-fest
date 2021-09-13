@@ -11,10 +11,15 @@ export class RequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    const authReq = req.clone({setHeaders: {
-        'content-type': 'application/json'
-      },
-      url: 'http://localhost:8080/quiz-fest/api'+req.url});
-    return next.handle(authReq);
+    if(!req.url.includes('http://')) {
+      const authReq = req.clone({
+        setHeaders: {
+          'content-type': 'application/json'
+        },
+        url: 'http://localhost:8080/quiz-fest/api' + req.url
+      });
+      return next.handle(authReq);
+    }
+    return next.handle(req);
   }
 }
