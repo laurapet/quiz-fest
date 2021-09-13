@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {}
 
@@ -25,8 +26,17 @@ export class LoginComponent implements OnInit {
         new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
           .set('Authorization', 'Basic ' + btoa('quiz-fest:57f24317-2f8b-4056-9308-a779c03c4291'))
     }).subscribe(res =>{
-      console.log(res['access_token']);
 
+      const token = res['access_token'];
+      console.log(token);
+      if(token){
+        localStorage.setItem('token', res['access_token']);
+        this.redirectHome();
+      }
     });
+  }
+
+  redirectHome(){
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
