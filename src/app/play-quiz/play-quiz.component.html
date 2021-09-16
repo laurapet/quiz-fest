@@ -14,23 +14,23 @@
   </ion-toolbar>
 </ion-header>
 <ion-content (click)="continue()" *ngIf="quiz">
-  <ion-card>
+  <ion-card class="question ion-text-center">
     <ion-card-header>
       <ion-card-title>
         <h1 *ngIf="!endReached">
           {{quiz.currentQuestion.text}}
         </h1>
         <h1 *ngIf="endReached">
-          Congartulations you finished the Quiz with <ion-text color="success"><b>{{quiz.currentPoints}}</b></ion-text>  Points
+          Congratulations you finished the Quiz with <ion-text color="success"><b>{{quiz.currentPoints}}</b></ion-text>  Points
         </h1>
       </ion-card-title>
     </ion-card-header>
   </ion-card>
   <ion-grid *ngIf="!endReached">
-    <ion-row>
-      <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers">
-        <ion-card [color]="selectColor(answer.inCorrect)" (click)="answerQuestion(answer.nr)">
-          <ion-card-content>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" *ngFor="let answer of quiz.currentQuestion.answers" class="ion-align-items-stretch">
+        <ion-card [color]="selectColor(answer.inCorrect)" (click)="answerQuestion(answer.nr)" button="true">
+          <ion-card-content class="ion-text-center">
             {{answer.text}}
           </ion-card-content>
         </ion-card>

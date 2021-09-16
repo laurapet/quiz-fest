@@ -1,0 +1,17 @@
+ion-grid{
+  ion-card {
+    height: 100%;
+  }
+}
+
+.question{
+  min-height: 40%;
+  ion-card-header{
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    width: 100%;
+  }
+}
+
+
