@@ -1,0 +1,10 @@
+<ion-content>
+
+  <div>
+    <ion-input [(ngModel)]="username" placeholder="Name"></ion-input>
+    <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+
+    <ion-button (click)="acquireToken(username, password)">Login</ion-button>
+  </div>
+
+</ion-content>

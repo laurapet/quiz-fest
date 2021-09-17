@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Auth
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Auth</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="!authenticated">
+    <ion-button (click)="openLogin()">Login</ion-button>
+    <ion-button (click)="openRegister()">Register</ion-button><br/>
+  </div>
+
+  <div *ngIf="authenticated">
+    {{ name }}<br/>
+    {{ email }}<br/>
+
+    <ion-button (click)="openUserManagement()">Manage Account</ion-button><br/>
+    <ion-button (click)="openLogout()">Logout</ion-button><br/>
+
+    <ion-button (click)="logInfo()">Log Token</ion-button>
+    <ion-button (click)="logClaims()">Log Claims</ion-button>
+  </div>
+</ion-content>
