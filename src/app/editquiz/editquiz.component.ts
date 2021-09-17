@@ -27,7 +27,6 @@ export class EditquizComponent implements OnInit {
   ngOnInit() {}
 
   dismiss() {
-    console.log(this.editQuizService.quizToEdit.questions);
     this.modalController.dismiss({
       dismissed: true
     });
@@ -50,4 +49,14 @@ export class EditquizComponent implements OnInit {
   deleteQuestion(index: number) {
     this.editQuizService.quizToEdit.questions.splice(index,1);
   }
+
+  submitQuiz() {
+    console.log(this.editQuizService.quizToEdit.title);
+    if(typeof this.editQuizService.quizToEdit.title!='undefined' && this.editQuizService.quizToEdit.title
+    && this.editQuizService.quizToEdit.categoryName!=='undefined' && this.editQuizService.quizToEdit.categoryName){
+      this.editQuizService.createQuiz(this.editQuizService.quizToEdit);
+      this.dismiss();
+    }
+  }
+
 }
