@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
       .set('password', password)
       .set('grant_type', 'password');
 
-    console.log(username);
     this.http.post('http://localhost:8180/auth/realms/quiz-fest/protocol/openid-connect/token', body.toString(), {headers:
         new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
           .set('Authorization', 'Basic ' + btoa('quiz-fest:57f24317-2f8b-4056-9308-a779c03c4291'))
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit {
       const token = res['access_token'];
       //console.log(token);
       if(token){
+        localStorage.setItem('username', username);
         localStorage.setItem('token', res['access_token']);
         this.redirectHome();
       }

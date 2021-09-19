@@ -1,0 +1,12 @@
+@import "../../theme/variables.scss";
+
+@mixin center-children {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.account-header{
+    position: relative;
+    @include center-children;
+}

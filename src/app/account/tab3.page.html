@@ -1,25 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Settings
+      Account
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Account</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="account-header">
+    <h1>{{this.username}}</h1>
+  </div>
+  <ion-button expand="block" (click)="openQuizEditor('Create Quiz')">
+    Create Quiz
+  </ion-button>
+  <h2>
+    Your Quizzes
+  </h2>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-button color="secondary" expand="block">
-          Logout <ion-icon slot="end" name="log-out-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button color="danger" expand="block">
-          Delete Account <ion-icon slot="end" name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+
+    <ion-item *ngFor="let quiz of this.ownQuizzes; let i = index">
+      {{quiz.title}}
+
+      <ion-icon (click)="deleteQuiz(quiz,i)" slot="end" name="trash"></ion-icon>
+
+      <ion-icon (click)="openQuizEditor('Edit Quiz',quiz.linkToEdit)" slot="end" name="create"></ion-icon>
+
+    </ion-item>
+
+  </ion-list>
+
 </ion-content>
