@@ -49,4 +49,8 @@ export class Tab2Page {
     });
   }
 
+  doRefresh($event: any) {
+    console.log('refresh');
+    window.location.reload();
+  }
 }
