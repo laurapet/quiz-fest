@@ -54,8 +54,9 @@ export class EditquizComponent implements OnInit {
 
   submitQuiz() {
     if(this.quizIsValid()) {
-      this.editQuizService.createQuiz(this.editQuizService.quizToEdit);
-      this.dismiss();
+      this.editQuizService.createQuiz(this.editQuizService.quizToEdit).subscribe((quiz)=>{
+        this.dismiss();
+      });
     }
   }
 
@@ -69,10 +70,11 @@ export class EditquizComponent implements OnInit {
   }
 
   updateQuiz(): void {
-    this.editQuizService.updateQuiz(this.editQuizService.quizToEdit, this.link).subscribe((quiz)=>{
-      console.log(quiz);
-      this.dismiss();
-    });
+    if(this.quizIsValid()){
+      this.editQuizService.updateQuiz(this.editQuizService.quizToEdit, this.link).subscribe((quiz)=>{
+        this.dismiss();
+      });
+    }
   }
 
   private quizIsValid() {
