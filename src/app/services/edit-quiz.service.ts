@@ -17,11 +17,13 @@ export class EditQuizService {
   }
 
   public createQuiz(quiz: QuizEdit){
-
+    const quizToCreate = {title: quiz.title, categoryName: {name: quiz.categoryName}, questions: quiz.questions};
+    this.http.post('/quizzes', quizToCreate).subscribe((res) => console.log(res));
   }
 
-  public updateQuiz(quiz: QuizEdit){
-
+  public updateQuiz(quiz: QuizEdit, link: string): Observable<QuizEdit>{
+    const quizToUpdate = {title: quiz.title, categoryName: {name: quiz.categoryName}, questions: quiz.questions};
+    return this.http.put<QuizEdit>('/'+link,quizToUpdate);
   }
 
   public getDefaultAnswers(): Answer[]{
@@ -30,13 +32,18 @@ export class EditQuizService {
   }
 
 
-  public getOwnQuizzes(): /**/Observable<QuizList[]>{
-    /*
-    let ownQuizzes: QuizList[];
-    ownQuizzes = [{title: 'Naturquiz', linkToEdit: '', linkToQuiz: ''},
-    {title: 'abc', linkToEdit: '', linkToQuiz: ''},
-    {title: 'Kultur 101', linkToEdit: '', linkToQuiz: ''}];
-    return ownQuizzes;*/
+  public getOwnQuizzes(): Observable<QuizList[]>{
     return (this.http.get<QuizList[]>('/quizzes'));
+  }
+
+  public deleteQuiz(quiz: QuizList) /*:Observable<any> */{
+    console.log(quiz);
+    const link: any = quiz.linkToEdit;
+    console.log(link);
+    return this.http.delete('/'+quiz.linkToEdit).subscribe((res) => console.log(res));
+  }
+
+  getQuizToEdiz(link: string): Observable<QuizEdit>{
+    return this.http.get<QuizEdit>('/'+link);
   }
 }

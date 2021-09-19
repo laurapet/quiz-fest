@@ -12,21 +12,22 @@ import {CategoryService} from '../services/category.service';
 })
 export class Tab3Page {
 
+  username: string;
    ownQuizzes: QuizList[];
    categories: string[];
 
   constructor(public modalController: ModalController, public editQuizService: EditQuizService, public categoryService: CategoryService) {
+    this.username=localStorage.getItem('username');
     this.loadOwnQuizzes();
     this.getCategoryNames();
+
   }
 
   loadOwnQuizzes(){
-    this.editQuizService.getOwnQuizzes()
-      .subscribe(quizzes =>{
+    this.editQuizService.getOwnQuizzes().subscribe((quizzes) =>{
       this.ownQuizzes = quizzes;
       }
     );
-    //this.ownQuizzes = this.editQuizService.getOwnQuizzes();
   }
 
   getCategoryNames(){
@@ -37,16 +38,27 @@ export class Tab3Page {
     });
   }
 
-  async openQuizEditor(){
+  async openQuizEditor(pageTitle: string, link?: string){
 
     const modal = await this.modalController.create({
       component: EditquizComponent,
       componentProps: {
-        pageTitle: 'Create Quiz',
-        categories: this.categories
+        pageTitle,
+        categories: this.categories,
+        link
       }
+    });
+    modal.onDidDismiss().then(()=>{
+      this.loadOwnQuizzes();
+      this.editQuizService.quizToEdit={categoryName:'', title:'',questions:[]};
     });
     return await modal.present();
   }
 
+  deleteQuiz(quiz: QuizList, index: number) {
+    //TODO: loadOwnQuizzes benutzen zum sofortigen neuladen FALLS löschen geklappt hat
+    console.log(quiz);
+    this.ownQuizzes.splice(index,1);
+    this.editQuizService.deleteQuiz(quiz);
+  }
 }

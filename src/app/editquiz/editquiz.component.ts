@@ -17,14 +17,16 @@ export class EditquizComponent implements OnInit {
 
   @Input() pageTitle: string;
   @Input() categories: string[];
-
-  chosenCategory: '';
+  @Input() link: string;
 
   constructor(public modalController: ModalController, public editQuizService: EditQuizService) {
-
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.link!== undefined){
+      this.getQuiz();
+    }
+  }
 
   dismiss() {
     this.modalController.dismiss({
@@ -51,12 +53,28 @@ export class EditquizComponent implements OnInit {
   }
 
   submitQuiz() {
-    console.log(this.editQuizService.quizToEdit.title);
-    if(typeof this.editQuizService.quizToEdit.title!='undefined' && this.editQuizService.quizToEdit.title
+    console.log(this.editQuizService.quizToEdit.questions);
+    //TODO: hässlich
+    if(typeof this.editQuizService.quizToEdit.title!=='undefined' && this.editQuizService.quizToEdit.title
     && this.editQuizService.quizToEdit.categoryName!=='undefined' && this.editQuizService.quizToEdit.categoryName){
       this.editQuizService.createQuiz(this.editQuizService.quizToEdit);
       this.dismiss();
     }
   }
 
+
+  getQuiz() {
+    this.editQuizService.getQuizToEdiz(this.link).subscribe((quiz)=>{
+      this.editQuizService.quizToEdit=quiz;
+      const category: any = quiz.categoryName;
+      this.editQuizService.quizToEdit.categoryName = category.name;
+    });
+  }
+
+  updateQuiz(): void {
+    this.editQuizService.updateQuiz(this.editQuizService.quizToEdit, this.link).subscribe((quiz)=>{
+      console.log(quiz);
+      this.dismiss();
+    });
+  }
 }

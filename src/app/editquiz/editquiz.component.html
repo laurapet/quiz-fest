@@ -39,5 +39,6 @@
 
 </ion-content>
 
-<ion-button color="primary" expand="block" (click)="submitQuiz()">Save Quiz</ion-button>
+<ion-button *ngIf="link==null" color="primary" expand="block" (click)="submitQuiz()">Save Quiz</ion-button>
+<ion-button *ngIf="link!=null" color="primary" expand="block" (click)="updateQuiz()">Update Quiz</ion-button>
 

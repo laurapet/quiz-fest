@@ -9,6 +9,7 @@ import {EditquizComponent} from '../editquiz/editquiz.component';
 import {EditquestionComponent} from '../editquestion/editquestion.component';
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
+import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import {BrowserModule} from '@angular/platform-browser';
     Tab3PageRoutingModule,
 
   ],
-  declarations: [Tab3Page, EditquizComponent, EditquestionComponent]
+  declarations: [Tab3Page, EditquestionComponent]
 })
 export class Tab3PageModule {}

@@ -13,9 +13,9 @@
     </ion-toolbar>
   </ion-header>
   <div class="account-header">
-    <h1>Username</h1>
+    <h1>{{this.username}}</h1>
   </div>
-  <ion-button expand="block" (click)="openQuizEditor()">
+  <ion-button expand="block" (click)="openQuizEditor('Create Quiz')">
     Create Quiz
   </ion-button>
   <h2>
@@ -24,12 +24,12 @@
 
   <ion-list>
 
-    <ion-item *ngFor="let quiz of this.ownQuizzes">
+    <ion-item *ngFor="let quiz of this.ownQuizzes; let i = index">
       {{quiz.title}}
 
-      <ion-icon slot="end" name="play"></ion-icon>
+      <ion-icon (click)="deleteQuiz(quiz,i)" slot="end" name="trash"></ion-icon>
 
-      <ion-icon slot="end" name="create"></ion-icon>
+      <ion-icon (click)="openQuizEditor('Edit Quiz',quiz.linkToEdit)" slot="end" name="create"></ion-icon>
 
     </ion-item>
 

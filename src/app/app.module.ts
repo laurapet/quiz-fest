@@ -16,7 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {AuthInterceptor} from './services/AuthInterceptor';
 
 @NgModule({
-  declarations: [AppComponent, PlayQuizComponent, LoginComponent],
+  declarations: [AppComponent, PlayQuizComponent,EditquizComponent, LoginComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -25,13 +25,15 @@ import {AuthInterceptor} from './services/AuthInterceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent},
-      {path: 'editquiz', component: EditquizComponent}])],
+      {path: 'editquiz', component: EditquizComponent}]),
+    FormsModule
+  ],
       providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
       ],
-  
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
