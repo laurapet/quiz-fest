@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Settings
+      {{name()}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,26 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Settings</ion-title>
+      <ion-title size="large">{{name()}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-grid>
     <ion-row>
+      <ion-title>
+        Points Total {{points()}}
+      </ion-title>
+    </ion-row>
+    <ion-row>
       <ion-col size="6">
-        <ion-button color="secondary" expand="block">
+        <ion-button color="secondary" expand="block" (click)="logout()">
           Logout <ion-icon slot="end" name="log-out-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button color="danger" expand="block">
-          Delete Account <ion-icon slot="end" name="trash-outline"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-button (click)="hapticsVibrate()">Haptics test</ion-button>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="hapticsVibrate()">Haptics test</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
