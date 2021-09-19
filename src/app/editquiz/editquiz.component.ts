@@ -53,10 +53,7 @@ export class EditquizComponent implements OnInit {
   }
 
   submitQuiz() {
-    console.log(this.editQuizService.quizToEdit.questions);
-    //TODO: hässlich
-    if(typeof this.editQuizService.quizToEdit.title!=='undefined' && this.editQuizService.quizToEdit.title
-    && this.editQuizService.quizToEdit.categoryName!=='undefined' && this.editQuizService.quizToEdit.categoryName){
+    if(this.quizIsValid()) {
       this.editQuizService.createQuiz(this.editQuizService.quizToEdit);
       this.dismiss();
     }
@@ -76,5 +73,22 @@ export class EditquizComponent implements OnInit {
       console.log(quiz);
       this.dismiss();
     });
+  }
+
+  private quizIsValid() {
+
+    if (this.editQuizService.quizToEdit.title !== null && this.editQuizService.quizToEdit.title !== '') {
+      if (this.editQuizService.quizToEdit.categoryName !== null && this.editQuizService.quizToEdit.categoryName !== '') {
+        if(this.editQuizService.quizToEdit.questions.length>=1){
+          return true;
+        }
+        this.editQuizService.showBadRequestToast('Quizzes must contain at least one Question.');
+        return false;
+      }
+      this.editQuizService.showBadRequestToast('You have to choose Category.');
+      return false;
+    }
+    this.editQuizService.showBadRequestToast('Quiz titles can\'t be blank.');
+    return false;
   }
 }

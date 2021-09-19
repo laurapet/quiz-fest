@@ -25,18 +25,18 @@ export class EditquestionComponent implements OnInit {
   }
 
   submitQuestion() {
-    if(typeof this.questionText!='undefined' && this.questionText){
-      const question = {
-        text: this.questionText,
-        answers: this.answers
-      };
+    if(this.questionIsValid()) {
+        const question = {
+          text: this.questionText,
+          answers: this.answers
+        };
 
-      if(this.questionIndex!==undefined){
-        this.editQuizService.quizToEdit.questions[this.questionIndex] = question;
-      }else{
-        this.editQuizService.quizToEdit.questions.push(question);
-      }
-      this.closeQuestionEditor();
+        if (this.questionIndex !== undefined) {
+          this.editQuizService.quizToEdit.questions[this.questionIndex] = question;
+        } else {
+          this.editQuizService.quizToEdit.questions.push(question);
+        }
+        this.closeQuestionEditor();
     }
   }
 
@@ -57,5 +57,27 @@ export class EditquestionComponent implements OnInit {
     if(this.answers.length < 6){
       this.answers.push({text: 'new answer', isCorrect: false});
     }
+  }
+
+  private questionIsValid() {
+    if(this.questionText!==undefined&&this.questionText!==''){
+        let inCorrectProvided = false;
+        let correctProvided = false;
+        for(const answer of this.answers){
+          if(answer.isCorrect){
+            correctProvided=true;
+          }
+          else{
+            inCorrectProvided=true;
+          }
+        }
+        if(correctProvided&&inCorrectProvided){
+          return true;
+        }
+        this.editQuizService.showBadRequestToast('Answers must contain at least one correct and one incorrect answer');
+        return false;
+    }
+    this.editQuizService.showBadRequestToast('Questiontext can\'t be blank.');
+    return false;
   }
 }
