@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {PlayService} from '../services/play.service';
 import {PlayQuiz} from '../entitys/PlayQuiz';
 import {Result} from '../entitys/Result';
@@ -18,7 +18,7 @@ export class PlayQuizComponent implements OnInit{
   @Input() title: string;
   @Input() link: string;
 
-  constructor(public modalController: ModalController, public playService: PlayService) {
+  constructor(public modalController: ModalController, public playService: PlayService, public alertController: AlertController) {
   }
 
   ngOnInit() {
@@ -105,6 +105,19 @@ export class PlayQuizComponent implements OnInit{
         this.endReached = true;
       }
     }
+  }
+
+  async presentAlertQuiz() {
+    const alert = await this.alertController.create({
+      header: 'Do you want to quit?',
+      message: 'The Points you collected so far will be lost, unless you finish the Quiz',
+      buttons: ['Continue', {
+        text: 'Quit',
+        handler: () => this.dismiss()
+      }]
+    });
+
+    await alert.present();
   }
 
   endQuiz(){
