@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouteReuseStrategy, RouterModule} from '@angular/router';
+import {RouteReuseStrategy} from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -14,9 +14,10 @@ import {RequestInterceptor} from './services/RequestInterceptor';
 import {EditquizComponent} from './editquiz/editquiz.component';
 import {FormsModule} from '@angular/forms';
 import {AuthInterceptor} from './services/AuthInterceptor';
+import {ResponseInterceptor} from './services/ResponseInterceptor';
 
 @NgModule({
-  declarations: [AppComponent, PlayQuizComponent,EditquizComponent, LoginComponent],
+  declarations: [AppComponent, PlayQuizComponent, EditquizComponent, LoginComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -24,15 +25,13 @@ import {AuthInterceptor} from './services/AuthInterceptor';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    RouterModule.forRoot([{path: 'play-quiz', component: PlayQuizComponent},
-      {path: 'editquiz', component: EditquizComponent}]),
-    FormsModule
+    FormsModule,
   ],
-      providers: [
-        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-      ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
+  ],
 
   bootstrap: [AppComponent],
 })
