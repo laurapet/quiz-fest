@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     }).subscribe(res =>{
 
       const token = res['access_token'];
-      console.log(token);
+      //console.log(token);
       if(token){
         localStorage.setItem('token', res['access_token']);
         this.redirectHome();
@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
   }
 
   redirectHome(){
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.router.navigate(['../'], { relativeTo: this.route }).then(()=>{
+      window.location.reload();
+    });
   }
 }

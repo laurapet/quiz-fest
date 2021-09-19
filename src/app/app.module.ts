@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './services/RequestInterceptor';
 import {FormsModule} from '@angular/forms';
 import {AuthInterceptor} from './services/AuthInterceptor';
+import {ResponseInterceptor} from './services/ResponseInterceptor';
 
 @NgModule({
   declarations: [AppComponent, PlayQuizComponent, LoginComponent],
@@ -29,6 +30,7 @@ import {AuthInterceptor} from './services/AuthInterceptor';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
 })

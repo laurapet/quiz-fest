@@ -6,7 +6,7 @@ import {
 import { Observable } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 
-/** Pass untouched request through to the next request handler. */
+/** Pass request through to the next request handler with Bearer Token. */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
             'Authorization': 'Bearer '+ token
           }
         });
-        console.log('Intercept '+ token);
+        //console.log('Intercept '+ token);
         return next.handle(authReq);
       }
     }else {
