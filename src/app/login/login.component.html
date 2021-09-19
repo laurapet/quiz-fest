@@ -1,10 +1,34 @@
-<ion-content>
+<ion-content >
 
-  <div>
-    <ion-input [(ngModel)]="username" placeholder="Name"></ion-input>
-    <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+<ion-card>
+  <ion-card-title class="ion-text-center">
+    <h1>
+      Quiz Fest
+    </h1>
+  </ion-card-title>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" class="ion-align-self-center">
+        <ion-input [(ngModel)]="username" placeholder="Name"></ion-input>
+      </ion-col>
 
-    <ion-button (click)="acquireToken(username, password)">Login</ion-button>
-  </div>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" class="ion-align-items-center">
+        <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+      </ion-col>
 
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" class="ion-align-self-stretch">
+        <ion-button (click)="acquireToken(username, password)" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" class="ion-align-self-stretch">
+        <ion-button class="blue-button" fill="none" href="http://localhost:8180/auth/realms/quiz-fest/protocol/openid-connect/registrations" expand="block">Register <ion-icon name="arrow-redo-outline" size="small" slot="end"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
 </ion-content>

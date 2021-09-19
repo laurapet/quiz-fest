@@ -134,8 +134,6 @@ export class PlayQuizComponent implements OnInit{
 
     totalPoints += this.quiz.currentPoints;
     localStorage.setItem('points', String(totalPoints));
-    this.modalController.dismiss({
-      dismissed: true
-    });
+    this.dismiss();
   }
 }
