@@ -105,6 +105,24 @@ export class PlayQuizComponent implements OnInit{
         this.endReached = true;
       }
     }
+  }
 
+  endQuiz(){
+
+    let totalPoints = 0;
+    const points = localStorage.getItem('points');
+    if(points){
+      try {
+        totalPoints = parseInt(points, 10);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    totalPoints += this.quiz.currentPoints;
+    localStorage.setItem('points', String(totalPoints));
+    this.modalController.dismiss({
+      dismissed: true
+    });
   }
 }
