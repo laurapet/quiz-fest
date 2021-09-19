@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouteReuseStrategy, RouterModule} from '@angular/router';
+import {RouteReuseStrategy} from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -17,7 +17,7 @@ import {AuthInterceptor} from './services/AuthInterceptor';
 import {ResponseInterceptor} from './services/ResponseInterceptor';
 
 @NgModule({
-  declarations: [AppComponent, PlayQuizComponent,EditquizComponent, LoginComponent],
+  declarations: [AppComponent, PlayQuizComponent, EditquizComponent, LoginComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
