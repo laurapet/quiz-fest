@@ -1,0 +1,55 @@
+<ion-header xmlns="http://www.w3.org/1999/html">
+  <ion-toolbar>
+    <ion-button (click)="closeQuestionEditor()" fill="clear" slot="start">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Edit Question
+    </ion-title>
+    <ion-button (click)="openHelpPopover()" fill="clear" slot="end">
+      <ion-icon name="help-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="questionForm" (ngSubmit)="submitQuestion()">
+  <ion-item>
+    <ion-label position="stacked">Questiontext</ion-label>
+    <ion-input formControlName="text" type="text" [(ngModel)]="questionText"></ion-input>
+  </ion-item>
+</form>
+  <ion-grid>
+    <ion-row>
+      <!--<ion-col size="6" *ngFor="let answer of this.answers"></ion-col>-->
+      <ion-col size="6" *ngFor="let answer of this.answers; let i = index">
+        <ion-card [color]="selectColor(answer.isCorrect)">
+          <ion-card-content>
+            <ion-input size="6" type="text" [(ngModel)]="answer.text"></ion-input>
+
+            <!--<ion-item lines="none" color="none">-->
+            <div>
+              <ion-icon class="ion-float-right" style="padding: 12px;" (click)="deleteAnswer(i)" name="trash"></ion-icon>
+              <ion-toggle class="ion-float-left" color="light" [(ngModel)]="answer.isCorrect"></ion-toggle>
+            </div>
+            <!--</ion-item>-->
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card color="white" (click)="addNewAnswer()" *ngIf="answers.length<6">
+          <ion-card-content>
+            <ion-icon size="large" color="primary" name="add"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button type="submit" [disabled]="!questionForm.valid || !this.answersExist()" (click)="submitQuestion()">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
