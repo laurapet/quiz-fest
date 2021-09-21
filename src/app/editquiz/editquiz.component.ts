@@ -6,6 +6,8 @@ import {QuizEdit} from '../entitys/QuizEdit';
 import {Question} from '../entitys/Question';
 import {EditquestionComponent} from '../editquestion/editquestion.component';
 import {Answer} from '../entitys/Answer';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {QuestionEditorTooltipsComponent} from "../editquestion/question-editor-tooltips/question-editor-tooltips.component";
 
 
 @Component({
@@ -19,7 +21,13 @@ export class EditquizComponent implements OnInit {
   @Input() categories: string[];
   @Input() link: string;
 
-  constructor(public modalController: ModalController, public editQuizService: EditQuizService) {
+  private quizForm: FormGroup;
+
+  constructor(public modalController: ModalController, public editQuizService: EditQuizService, private formBuilder: FormBuilder) {
+    this.quizForm = this.formBuilder.group({
+      quizTitle: ['', Validators.required],
+      categoryName: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -35,7 +43,7 @@ export class EditquizComponent implements OnInit {
   }
 
   async openQuestionEditor(questionText: string, answers: Answer[], questionIndex?: number){
-    console.log(questionIndex);
+    console.log(questionText);
     const modal = await this.modalController.create({
       component: EditquestionComponent,
       componentProps: {
@@ -53,16 +61,19 @@ export class EditquizComponent implements OnInit {
   }
 
   submitQuiz() {
-    if(this.quizIsValid()) {
-      this.editQuizService.createQuiz(this.editQuizService.quizToEdit).subscribe((quiz)=>{
-        this.dismiss();
-      });
-    }
+    this.initQuizToEdit();
+    this.editQuizService.createQuiz(this.editQuizService.quizToEdit).subscribe((quiz)=>{
+      this.dismiss();
+    });
+  }
+
+  questionExists(): boolean{
+    return this.editQuizService.quizToEdit.questions.length>=1;
   }
 
 
   getQuiz() {
-    this.editQuizService.getQuizToEdiz(this.link).subscribe((quiz)=>{
+     this.editQuizService.getQuizToEdiz(this.link).subscribe((quiz)=>{
       this.editQuizService.quizToEdit=quiz;
       const category: any = quiz.categoryName;
       this.editQuizService.quizToEdit.categoryName = category.name;
@@ -70,27 +81,17 @@ export class EditquizComponent implements OnInit {
   }
 
   updateQuiz(): void {
-    if(this.quizIsValid()){
-      this.editQuizService.updateQuiz(this.editQuizService.quizToEdit, this.link).subscribe((quiz)=>{
-        this.dismiss();
-      });
-    }
+    this.initQuizToEdit();
+    this.editQuizService.updateQuiz(this.editQuizService.quizToEdit, this.link).subscribe((quiz)=>{
+      this.dismiss();
+    });
   }
 
-  private quizIsValid() {
-
-    if (this.editQuizService.quizToEdit.title !== null && this.editQuizService.quizToEdit.title !== '') {
-      if (this.editQuizService.quizToEdit.categoryName !== null && this.editQuizService.quizToEdit.categoryName !== '') {
-        if(this.editQuizService.quizToEdit.questions.length>=1){
-          return true;
-        }
-        this.editQuizService.showBadRequestToast('Quizzes must contain at least one Question.');
-        return false;
-      }
-      this.editQuizService.showBadRequestToast('You have to choose Category.');
-      return false;
-    }
-    this.editQuizService.showBadRequestToast('Quiz titles can\'t be blank.');
-    return false;
+  initQuizToEdit(){
+    const formResult = this.quizForm.value;
+    this.editQuizService.quizToEdit.title = formResult.quizTitle;
+    this.editQuizService.quizToEdit.categoryName = formResult.categoryName;
   }
+
+
 }

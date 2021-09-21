@@ -6,16 +6,19 @@
     <ion-title>
       Edit Question
     </ion-title>
+    <ion-button (click)="openHelpPopover()" fill="clear" slot="end">
+      <ion-icon name="help-circle-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<form [formGroup]="questionForm" (ngSubmit)="submitQuestion()">
   <ion-item>
     <ion-label position="stacked">Questiontext</ion-label>
-    <ion-input type="text" [(ngModel)]="questionText"></ion-input>
+    <ion-input formControlName="text" type="text" [(ngModel)]="questionText"></ion-input>
   </ion-item>
-
+</form>
   <ion-grid>
     <ion-row>
       <!--<ion-col size="6" *ngFor="let answer of this.answers"></ion-col>-->
@@ -45,7 +48,7 @@
   </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="submitQuestion()">
+    <ion-fab-button type="submit" [disabled]="!questionForm.valid || !this.answersExist()" (click)="submitQuestion()">
       <ion-icon name="checkmark"></ion-icon>
     </ion-fab-button>
   </ion-fab>

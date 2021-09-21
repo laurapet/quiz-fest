@@ -12,21 +12,22 @@ import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './services/RequestInterceptor';
 import {EditquizComponent} from './editquiz/editquiz.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthInterceptor} from './services/AuthInterceptor';
 import {ResponseInterceptor} from './services/ResponseInterceptor';
 
 @NgModule({
   declarations: [AppComponent, PlayQuizComponent, EditquizComponent, LoginComponent],
   entryComponents: [],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        HttpClientModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
