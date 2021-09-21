@@ -17,9 +17,9 @@ export class EditQuizService {
     this.quizToEdit = {categoryName:'', title:'', questions:[]};
   }
 
-  public createQuiz(quiz: QuizEdit){
+  public createQuiz(quiz: QuizEdit): Observable<QuizEdit>{
     const quizToCreate = {title: quiz.title, categoryName: {name: quiz.categoryName}, questions: quiz.questions};
-    this.http.post('/quizzes', quizToCreate).subscribe((res) => console.log(res));
+    return this.http.post<QuizEdit>('/quizzes', quizToCreate);
   }
 
   public updateQuiz(quiz: QuizEdit, link: string): Observable<QuizEdit>{

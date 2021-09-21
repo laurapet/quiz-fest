@@ -5,6 +5,7 @@ import {
 
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import {ToastController} from '@ionic/angular';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -18,11 +19,30 @@ export class ResponseInterceptor implements HttpInterceptor {
         if(err.status === 401 && localStorage.getItem('token')){
           localStorage.removeItem('token');
           window.location.reload();
-        } else if(err.status === 0){
+        }else if(err.status === 404){
+          window.location.reload();
+          this.showErrorToast('Resource doesn\'t exist anymore');
+        }
+        else if(err.status === 0){
           console.log('server dosen\'t respond');
         }
       }
       return of(err);
     })));
+  }
+
+  async showErrorToast(message: string) {
+    const toastController: ToastController = new ToastController();
+    const toast = await toastController.create({
+      message,
+      //duration: 2000,
+      buttons: [
+        {
+          side: 'end',
+          text: 'close'
+        }
+      ]
+    });
+    toast.present();
   }
 }
