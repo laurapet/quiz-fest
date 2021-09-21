@@ -45,7 +45,14 @@ export class PlayQuizComponent implements OnInit{
         }
 
         if (this.result.points === 0) {
-          await Haptics.vibrate();
+          try{
+            const haptics = localStorage.getItem('hapticsOn');
+            if(JSON.parse(haptics)){
+              await Haptics.vibrate();
+            }
+          } catch (e){
+            console.log(e);
+          }
         } else {
           this.quiz.currentPoints += this.result.points;
         }

@@ -8,13 +8,23 @@ import {Router} from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  const // @ts-ignore
+  hapticsOn: boolean;
+  const; // @ts-ignore
   hapticsVibrate = async () => {
-    await Haptics.vibrate();
+    if(!this.hapticsOn){
+      await Haptics.vibrate();
+    }
+    localStorage.setItem('hapticsOn', this.hapticsOn.toString());
   };
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    try{
+      const haptics = localStorage.getItem('hapticsOn');
+      this.hapticsOn = ('true' == haptics);
+    } catch (e){
+      this.hapticsOn = false;
+    }
+  }
 
   logout() {
     localStorage.removeItem('token');
