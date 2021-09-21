@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Haptics} from '@capacitor/haptics';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -13,10 +14,12 @@ export class Tab1Page {
     await Haptics.vibrate();
   };
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  constructor() {}
+  constructor(private router: Router) {}
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigate([`../login`]);
   }
 
   points(): string{
