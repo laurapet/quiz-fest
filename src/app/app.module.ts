@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {PlayQuizComponent} from './play-quiz/play-quiz.component';
+import {PlayQuizComponent} from './tab-play/play-quiz/play-quiz.component';
 import {LoginComponent} from './login/login.component';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';

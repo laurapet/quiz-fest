@@ -8,7 +8,7 @@ import {EditquizComponent} from './modals/editquiz/editquiz.component';
 import {EditquestionComponent} from './modals/editquestion/editquestion.component';
 import { Tab3PageRoutingModule } from './create-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
-import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
+import {PlayQuizComponent} from '../tab-play/play-quiz/play-quiz.component';
 
 @NgModule({
     imports: [

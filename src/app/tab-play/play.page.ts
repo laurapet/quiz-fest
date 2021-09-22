@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {CategoryService} from '../services/category.service';
 import {QuizList} from '../entitys/QuizList';
-import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
+import {PlayQuizComponent} from './play-quiz/play-quiz.component';
 
 @Component({
   selector: 'app-play',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent} from './login/login.component';
-import {PlayQuizComponent} from './play-quiz/play-quiz.component';
+import {PlayQuizComponent} from './tab-play/play-quiz/play-quiz.component';
 import {EditquizComponent} from './tab-create/modals/editquiz/editquiz.component';
 
 const routes: Routes = [

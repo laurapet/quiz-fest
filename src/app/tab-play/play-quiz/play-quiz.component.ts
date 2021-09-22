@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AlertController, ModalController} from '@ionic/angular';
-import {PlayService} from '../services/play.service';
-import {PlayQuiz} from '../entitys/PlayQuiz';
-import {Result} from '../entitys/Result';
+import {PlayService} from '../../services/play.service';
+import {PlayQuiz} from '../../entitys/PlayQuiz';
+import {Result} from '../../entitys/Result';
 import {Haptics} from '@capacitor/haptics';
 
 @Component({
