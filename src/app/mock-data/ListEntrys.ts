@@ -32,9 +32,9 @@ export class ListEntrys{
       currentQuestion: {
         text: 'Example of a Question text text text text text?',
         answers: [
-          {text: 'Answer 1', inCorrect: undefined, nr: 1},
-          {text: 'Answer 2', inCorrect: undefined, nr: 2},
-          {text: 'Answer 3', inCorrect: undefined, nr: 3},
+          {text: 'Answer 1', isCorrect: undefined, nr: 1},
+          {text: 'Answer 2', isCorrect: undefined, nr: 2},
+          {text: 'Answer 3', isCorrect: undefined, nr: 3},
         ]
       }
     };

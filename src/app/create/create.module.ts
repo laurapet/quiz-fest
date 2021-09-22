@@ -3,11 +3,11 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { Tab3Page } from './tab3.page';
+import { CreatePage } from './create.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-import {EditquizComponent} from '../editquiz/editquiz.component';
-import {EditquestionComponent} from '../editquestion/editquestion.component';
-import { Tab3PageRoutingModule } from './tab3-routing.module';
+import {EditquizComponent} from './modals/editquiz/editquiz.component';
+import {EditquestionComponent} from './modals/editquestion/editquestion.component';
+import { Tab3PageRoutingModule } from './create-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
 
@@ -18,11 +18,11 @@ import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
         CommonModule,
         FormsModule,
         ExploreContainerComponentModule,
-        RouterModule.forChild([{path: '', component: Tab3Page}]),
+        RouterModule.forChild([{path: '', component: CreatePage}]),
         Tab3PageRoutingModule,
         ReactiveFormsModule,
 
     ],
-  declarations: [Tab3Page, EditquestionComponent]
+  declarations: [CreatePage, EditquestionComponent]
 })
 export class Tab3PageModule {}

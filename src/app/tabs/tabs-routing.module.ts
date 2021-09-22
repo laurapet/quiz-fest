@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        loadChildren: () => import('../create/account.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../create/create.module').then(m => m.Tab3PageModule)
       },
       {
         path: '',

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Tab3Page } from './tab3.page';
-import {EditquizComponent} from '../editquiz/editquiz.component';
+import { CreatePage } from './create.page';
+import {EditquizComponent} from './modals/editquiz/editquiz.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: Tab3Page,
+    component: CreatePage,
   }
 ];
 

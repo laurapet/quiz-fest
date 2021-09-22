@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController, PopoverController} from '@ionic/angular';
-import {Question} from '../entitys/Question';
-import {EditQuizService} from '../services/edit-quiz.service';
-import {Answer} from '../entitys/Answer';
+import {Question} from '../../../entitys/Question';
+import {EditQuizService} from '../../../services/edit-quiz.service';
+import {Answer} from '../../../entitys/Answer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionEditorTooltipsComponent} from './question-editor-tooltips/question-editor-tooltips.component';
 

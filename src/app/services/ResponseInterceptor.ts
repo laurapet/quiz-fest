@@ -13,7 +13,7 @@ import {injectMocks, Scenarios} from 'data-mocks';
 export class ResponseInterceptor implements HttpInterceptor {
 
   constructor() {
-    this.setupMocks();
+    //this.setupMocks();
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -30,7 +30,7 @@ export class ResponseInterceptor implements HttpInterceptor {
           this.showErrorToast('Resource doesn\'t exist anymore');
         }
         else if(err.status === 0){
-          this.setupMocks();
+          //this.setupMocks();
           console.log('server dosen\'t respond');
         }
       }

@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import {IonButton, ModalController} from '@ionic/angular';
 import { QuizList } from '../entitys/QuizList';
 import { EditQuizService } from '../services/edit-quiz.service';
-import {EditquizComponent} from '../editquiz/editquiz.component';
+import {EditquizComponent} from './modals/editquiz/editquiz.component';
 import {CategoryService} from '../services/category.service';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-create',
+  templateUrl: 'create.page.html',
+  styleUrls: ['create.page.scss']
 })
-export class Tab3Page {
+export class CreatePage {
 
   username: string;
    ownQuizzes: QuizList[];
