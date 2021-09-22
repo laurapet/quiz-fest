@@ -6,20 +6,20 @@ import {
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment';
 
-/** Pass untouched request through to the next request handler. */
+/** Pass request through to the next request handler with appropriate Url. */
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
     if(!req.url.includes('http://')) {
-      const authReq = req.clone({
+      const cloneReq = req.clone({
         setHeaders: {
           'content-type': 'application/json'
         },
         url: environment.baseUrlQuizFest + req.url
       });
-      return next.handle(authReq);
+      return next.handle(cloneReq);
     }
     return next.handle(req);
   }

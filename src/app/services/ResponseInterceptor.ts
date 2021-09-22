@@ -24,7 +24,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         console.log('error intercepted');
         if(err.status === 401 && localStorage.getItem('token')){
           localStorage.removeItem('token');
-          window.location.reload();
+          this.showErrorToast('Authorization Failed');
         }else if(err.status === 404){
           this.showErrorToast('Resource doesn\'t exist anymore');
         }
@@ -45,7 +45,7 @@ export class ResponseInterceptor implements HttpInterceptor {
       buttons: [
         {
           side: 'end',
-          text: 'close',
+          text: 'reload',
           handler: () => window.location.reload()
         }
       ]
