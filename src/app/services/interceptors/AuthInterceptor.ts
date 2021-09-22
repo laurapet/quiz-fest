@@ -5,7 +5,7 @@ import {
 
 import { Observable } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 /** Pass request through to the next request handler with Bearer Token. */
 @Injectable()
