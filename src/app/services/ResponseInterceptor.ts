@@ -67,7 +67,7 @@ export class ResponseInterceptor implements HttpInterceptor {
       {
         url: /Natur/,
         method: 'GET',
-        response: [{title: 'Das beste Naturquiz', linkToQuiz: 'quizzes/1/play'}],
+        response: [{title: 'Das beste Naturquiz', linkToQuiz: 'play/1/play'}],
         responseCode: 200
       },
       {

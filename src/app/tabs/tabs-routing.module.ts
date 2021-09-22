@@ -12,8 +12,8 @@ const routes: Routes = [
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
-        path: 'quizzes',
-        loadChildren: () => import('../quizzes/quizzes.module').then(m => m.Tab2PageModule)
+        path: 'play',
+        loadChildren: () => import('../play/play.module').then(m => m.Tab2PageModule)
       },
       {
         path: 'create',
@@ -21,14 +21,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/quizzes',
+        redirectTo: '/tabs/play',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/quizzes',
+    redirectTo: '/tabs/play',
     pathMatch: 'full'
   }
 ];

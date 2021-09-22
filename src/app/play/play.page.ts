@@ -5,11 +5,11 @@ import {QuizList} from '../entitys/QuizList';
 import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-play',
+  templateUrl: 'play.page.html',
+  styleUrls: ['play.page.scss']
 })
-export class Tab2Page {
+export class PlayPage {
 
   currentCategory = '';
   quizzes: QuizList[];

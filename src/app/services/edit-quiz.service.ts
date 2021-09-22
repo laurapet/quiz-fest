@@ -19,7 +19,7 @@ export class EditQuizService {
 
   public createQuiz(quiz: QuizEdit): Observable<QuizEdit>{
     const quizToCreate = {title: quiz.title, categoryName: {name: quiz.categoryName}, questions: quiz.questions};
-    return this.http.post<QuizEdit>('/quizzes', quizToCreate);
+    return this.http.post<QuizEdit>('/play', quizToCreate);
   }
 
   public updateQuiz(quiz: QuizEdit, link: string): Observable<QuizEdit>{
@@ -34,7 +34,7 @@ export class EditQuizService {
 
 
   public getOwnQuizzes(): Observable<QuizList[]>{
-    return (this.http.get<QuizList[]>('/quizzes'));
+    return (this.http.get<QuizList[]>('/play'));
   }
 
   public deleteQuiz(quiz: QuizList) /*:Observable<any> */{
