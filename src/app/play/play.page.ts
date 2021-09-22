@@ -51,4 +51,8 @@ export class PlayPage {
     });
   }
 
+  doRefresh($event: any) {
+    console.log('refresh');
+    window.location.reload();
+  }
 }

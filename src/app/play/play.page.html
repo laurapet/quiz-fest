@@ -10,7 +10,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list *ngIf="currentCategory ">
     <ion-item *ngFor="let quiz of quizzes">
       {{quiz.title}}

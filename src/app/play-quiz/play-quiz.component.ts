@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {PlayService} from '../services/play.service';
 import {PlayQuiz} from '../entitys/PlayQuiz';
 import {Result} from '../entitys/Result';
@@ -18,7 +18,7 @@ export class PlayQuizComponent implements OnInit{
   @Input() title: string;
   @Input() link: string;
 
-  constructor(public modalController: ModalController, public playService: PlayService) {
+  constructor(public modalController: ModalController, public playService: PlayService, public alertController: AlertController) {
   }
 
   ngOnInit() {
@@ -45,7 +45,14 @@ export class PlayQuizComponent implements OnInit{
         }
 
         if (this.result.points === 0) {
-          await Haptics.vibrate();
+          try{
+            const haptics = localStorage.getItem('hapticsOn');
+            if(JSON.parse(haptics)){
+              await Haptics.vibrate();
+            }
+          } catch (e){
+            console.log(e);
+          }
         } else {
           this.quiz.currentPoints += this.result.points;
         }
@@ -105,6 +112,35 @@ export class PlayQuizComponent implements OnInit{
         this.endReached = true;
       }
     }
+  }
 
+  async presentAlertQuiz() {
+    const alert = await this.alertController.create({
+      header: 'Do you want to quit?',
+      message: 'The Points you collected so far will be lost, unless you finish the Quiz',
+      buttons: ['Continue', {
+        text: 'Quit',
+        handler: () => this.dismiss()
+      }]
+    });
+
+    await alert.present();
+  }
+
+  endQuiz(){
+
+    let totalPoints = 0;
+    const points = localStorage.getItem('points');
+    if(points){
+      try {
+        totalPoints = parseInt(points, 10);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    totalPoints += this.quiz.currentPoints;
+    localStorage.setItem('points', String(totalPoints));
+    this.dismiss();
   }
 }

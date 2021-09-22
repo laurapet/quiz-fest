@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Haptics} from "@capacitor/haptics";
+import {Haptics} from '@capacitor/haptics';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -7,13 +8,37 @@ import {Haptics} from "@capacitor/haptics";
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  const // @ts-ignore
+  hapticsOn: boolean;
+  const; // @ts-ignore
   hapticsVibrate = async () => {
-    await Haptics.vibrate();
+    if(!this.hapticsOn){
+      await Haptics.vibrate();
+    }
+    localStorage.setItem('hapticsOn', this.hapticsOn.toString());
   };
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  constructor() {}
+  constructor(private router: Router) {
+    try{
+      const haptics = localStorage.getItem('hapticsOn');
+      this.hapticsOn = ('true' == haptics);
+    } catch (e){
+      this.hapticsOn = false;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigate([`../login`]);
+  }
+
+  points(): string{
+    return localStorage.getItem('points');
+  }
+
+  name(): string{
+    return localStorage.getItem('username');
+  }
 }
 
 
