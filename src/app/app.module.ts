@@ -11,7 +11,7 @@ import {LoginComponent} from './login/login.component';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './services/RequestInterceptor';
-import {EditquizComponent} from './create/modals/editquiz/editquiz.component';
+import {EditquizComponent} from './tab-create/modals/editquiz/editquiz.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthInterceptor} from './services/AuthInterceptor';
 import {ResponseInterceptor} from './services/ResponseInterceptor';
