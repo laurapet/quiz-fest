@@ -16,8 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../quizzes/quizzes.module').then(m => m.Tab2PageModule)
       },
       {
-        path: 'account',
-        loadChildren: () => import('../account/account.module').then(m => m.Tab3PageModule)
+        path: 'create',
+        loadChildren: () => import('../create/account.module').then(m => m.Tab3PageModule)
       },
       {
         path: '',

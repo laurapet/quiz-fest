@@ -35,6 +35,7 @@ export class Tab2Page {
       this.categoryService.getQuizzesFromCategory(this.currentCategory)
         .subscribe(quizzes =>{
           this.quizzes = quizzes;
+          console.log(this.quizzes);
         });
     }
   }
@@ -42,6 +43,7 @@ export class Tab2Page {
   getCategoryNames(){
     this.categoryService.getAllCategorys().subscribe((categories)=>{
       this.categories = categories;
+      console.log(this.categories);
       if(this.currentCategory == null || this.currentCategory === ''){
         this.currentCategory = this.categories[0];
         this.loadEntries();
