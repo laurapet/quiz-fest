@@ -1,5 +1,5 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "de.os.hs.quizfest",
 	"appName": "QuizFest",
 	"webDir": "www",
 	"bundledWebRuntime": false

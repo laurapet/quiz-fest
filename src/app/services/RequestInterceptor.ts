@@ -4,6 +4,7 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import {environment} from '../../environments/environment';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -16,7 +17,7 @@ export class RequestInterceptor implements HttpInterceptor {
         setHeaders: {
           'content-type': 'application/json'
         },
-        url: 'http://localhost:8080/quiz-fest/api' + req.url
+        url: environment.baseUrlQuizFest + req.url
       });
       return next.handle(authReq);
     }
