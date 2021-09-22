@@ -26,7 +26,6 @@ export class ResponseInterceptor implements HttpInterceptor {
           localStorage.removeItem('token');
           window.location.reload();
         }else if(err.status === 404){
-          window.location.reload();
           this.showErrorToast('Resource doesn\'t exist anymore');
         }
         else if(err.status === 0){
@@ -46,7 +45,8 @@ export class ResponseInterceptor implements HttpInterceptor {
       buttons: [
         {
           side: 'end',
-          text: 'close'
+          text: 'close',
+          handler: () => window.location.reload()
         }
       ]
     });

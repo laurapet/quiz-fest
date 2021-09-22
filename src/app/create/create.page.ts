@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonButton, ModalController} from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { QuizList } from '../entitys/QuizList';
 import { EditQuizService } from '../services/edit-quiz.service';
 import {EditquizComponent} from './modals/editquiz/editquiz.component';
@@ -13,8 +13,8 @@ import {CategoryService} from '../services/category.service';
 export class CreatePage {
 
   username: string;
-   ownQuizzes: QuizList[];
-   categories: string[];
+  ownQuizzes: QuizList[];
+  categories: string[];
 
   constructor(public modalController: ModalController, public editQuizService: EditQuizService, public categoryService: CategoryService) {
     this.username=localStorage.getItem('username');
