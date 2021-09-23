@@ -1,13 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {CategoryService} from '../../../services/category.service';
 import {EditQuizService} from '../../../services/edit-quiz.service';
-import {QuizEdit} from '../../../entitys/QuizEdit';
-import {Question} from '../../../entitys/Question';
 import {EditquestionComponent} from '../editquestion/editquestion.component';
 import {Answer} from '../../../entitys/Answer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {QuestionEditorTooltipsComponent} from "../editquestion/question-editor-tooltips/question-editor-tooltips.component";
 
 
 @Component({
@@ -43,7 +39,6 @@ export class EditquizComponent implements OnInit {
   }
 
   async openQuestionEditor(questionText: string, answers: Answer[], questionIndex?: number){
-    console.log(questionText);
     const modal = await this.modalController.create({
       component: EditquestionComponent,
       componentProps: {

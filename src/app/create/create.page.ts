@@ -12,12 +12,10 @@ import {CategoryService} from '../services/category.service';
 })
 export class CreatePage {
 
-  username: string;
    ownQuizzes: QuizList[];
    categories: string[];
 
   constructor(public modalController: ModalController, public editQuizService: EditQuizService, public categoryService: CategoryService) {
-    this.username=localStorage.getItem('username');
     this.loadOwnQuizzes();
     this.getCategoryNames();
 
