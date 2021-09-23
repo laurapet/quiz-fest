@@ -15,13 +15,15 @@
 
   <ion-grid>
     <ion-row>
+      <ion-col>
       <ion-title *ngIf="points()">
-        Points Total {{points()}}
+        Points Total: {{points()}}
       </ion-title>
+      </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col size="6" class="ion-text-center">
+      <ion-col size="6">
         <div class="wrapper">
         <ion-text >Haptics ON / OFF</ion-text>
         </div>
@@ -33,7 +35,7 @@
     <ion-row><ion-col></ion-col></ion-row>
     <ion-row><ion-col></ion-col></ion-row>
     <ion-row>
-      <ion-col size="6">
+      <ion-col>
         <ion-button color="secondary" expand="block" (click)="logout()">
           Logout <ion-icon slot="end" name="log-out-outline"></ion-icon>
         </ion-button>
