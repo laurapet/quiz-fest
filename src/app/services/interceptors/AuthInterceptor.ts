@@ -5,6 +5,7 @@ import {
 
 import { Observable } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 /** Pass request through to the next request handler with Bearer Token. */
 @Injectable()
@@ -15,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     if(token){
-      if(!req.url.includes('localhost:8180/auth/realms/quiz-fest/protocol/openid-connect/token')) {
+      if(!req.url.includes(environment.tokenUrl)) {
         const authReq = req.clone({
           setHeaders: {
             'content-type': 'application/json',

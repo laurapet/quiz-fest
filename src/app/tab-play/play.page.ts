@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {CategoryService} from '../services/category.service';
 import {QuizList} from '../entitys/QuizList';
-import {PlayQuizComponent} from '../play-quiz/play-quiz.component';
+import {PlayQuizComponent} from './play-quiz/play-quiz.component';
 
 @Component({
   selector: 'app-play',
@@ -35,7 +35,6 @@ export class PlayPage {
       this.categoryService.getQuizzesFromCategory(this.currentCategory)
         .subscribe(quizzes =>{
           this.quizzes = quizzes;
-          console.log(this.quizzes);
         });
     }
   }
@@ -43,7 +42,6 @@ export class PlayPage {
   getCategoryNames(){
     this.categoryService.getAllCategorys().subscribe((categories)=>{
       this.categories = categories;
-      console.log(this.categories);
       if(this.currentCategory == null || this.currentCategory === ''){
         this.currentCategory = this.categories[0];
         this.loadEntries();
@@ -51,4 +49,8 @@ export class PlayPage {
     });
   }
 
+  doRefresh($event: any) {
+    console.log('refresh');
+    window.location.reload();
+  }
 }

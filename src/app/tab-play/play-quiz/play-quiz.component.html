@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button (click)="dismiss()" fill="clear" slot="start">
+    <ion-button (click)="presentAlertQuiz()" fill="clear" slot="start">
       <ion-icon name="close" ></ion-icon>
     </ion-button>
     <ion-title>
@@ -14,6 +14,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content (click)="continue()" *ngIf="quiz">
+
   <ion-card class="question ion-text-center">
     <ion-card-header>
       <ion-card-title>
@@ -39,7 +40,7 @@
   </ion-grid>
   <ion-grid>
     <!--TODO: save points somewhere-->
-    <ion-button *ngIf="endReached" size="large" color="success" expand="block" (click)="dismiss()">
+    <ion-button *ngIf="endReached" size="large" color="success" expand="block" (click)="endQuiz()">
       Close
       <ion-icon name="checkmark"></ion-icon>
     </ion-button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  registerRedirect = environment.registerUrl;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 

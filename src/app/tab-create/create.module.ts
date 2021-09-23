@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CreatePage } from './create.page';
 import {EditquestionComponent} from './modals/editquestion/editquestion.component';
 import { Tab3PageRoutingModule } from './create-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {PlayQuizComponent} from '../tab-play/play-quiz/play-quiz.component';
 
 @NgModule({
     imports: [

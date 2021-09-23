@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonButton, ModalController} from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { QuizList } from '../entitys/QuizList';
 import { EditQuizService } from '../services/edit-quiz.service';
 import {EditquizComponent} from './modals/editquiz/editquiz.component';
