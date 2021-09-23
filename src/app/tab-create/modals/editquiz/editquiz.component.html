@@ -14,7 +14,6 @@
   <form [formGroup]="quizForm" (ngSubmit)="submitQuiz()" class="ion-padding">
     <ion-item>
       <ion-label position="stacked">Quiztitle</ion-label>
-      <!-- [(ngModel)]="this.editQuizService.quizToEdit.title"-->
       <ion-input formControlName="quizTitle" [value]="this.editQuizService.quizToEdit.title"></ion-input>
     </ion-item>
     <ion-item>

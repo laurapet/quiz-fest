@@ -9,14 +9,7 @@ import {Router} from '@angular/router';
 })
 export class AccountPage {
   hapticsOn: boolean;
-  const; // @ts-ignore
-  hapticsVibrate = async () => {
-    if(!this.hapticsOn){
-      await Haptics.vibrate();
-    }
-    localStorage.setItem('hapticsOn', this.hapticsOn.toString());
-  };
-  // eslint-disable-next-line @typescript-eslint/member-ordering
+
   constructor(private router: Router) {
     try{
       const haptics = localStorage.getItem('hapticsOn');
@@ -24,6 +17,13 @@ export class AccountPage {
     } catch (e){
       this.hapticsOn = false;
     }
+  }
+
+  async hapticsVibrate() {
+    if(!this.hapticsOn){
+      await Haptics.vibrate();
+    }
+    localStorage.setItem('hapticsOn', this.hapticsOn.toString());
   }
 
   logout() {

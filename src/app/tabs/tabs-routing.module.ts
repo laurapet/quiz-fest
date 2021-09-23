@@ -13,11 +13,11 @@ const routes: Routes = [
       },
       {
         path: 'play',
-        loadChildren: () => import('../tab-play/play.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../tab-play/play.module').then(m => m.PlayModule)
       },
       {
         path: 'create',
-        loadChildren: () => import('../tab-create/create.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../tab-create/create.module').then(m => m.CreateModule)
       },
       {
         path: '',

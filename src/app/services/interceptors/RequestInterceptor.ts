@@ -12,7 +12,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    if(!req.url.includes('http://')) {
+    if(!req.url.includes('http://') && !req.url.includes(environment.tokenUrl)) {
       const cloneReq = req.clone({
         setHeaders: {
           'content-type': 'application/json'

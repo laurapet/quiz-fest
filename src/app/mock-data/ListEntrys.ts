@@ -1,5 +1,6 @@
 import {QuizList} from '../entitys/QuizList';
 import {PlayQuiz} from '../entitys/PlayQuiz';
+import {of} from "rxjs";
 
 export class ListEntrys{
   getListEntrys(){
@@ -17,10 +18,10 @@ export class ListEntrys{
 
   getCategories(){
     const categories = [
-      'Category 1',
-      'Category 2',
-      'Category 3',
-      'Category 4'
+      'Nature',
+      'Culture',
+      'Sports',
+      'Gaming'
     ];
     return {categories};
   }
@@ -30,7 +31,7 @@ export class ListEntrys{
       title: '',
       currentPoints: 0,
       currentQuestion: {
-        text: 'Example of a Question text text text text text?',
+        text: 'Example of a Question what it could look like?',
         answers: [
           {text: 'Answer 1', isCorrect: undefined, nr: 1},
           {text: 'Answer 2', isCorrect: undefined, nr: 2},

@@ -4,7 +4,6 @@ import { QuizEdit } from '../entitys/QuizEdit';
 import { QuizList } from '../entitys/QuizList';
 import {HttpClient} from '@angular/common/http';
 import {Answer} from '../entitys/Answer';
-import {ToastController} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class EditQuizService {
 
   public quizToEdit: QuizEdit;
 
-  constructor(private http: HttpClient, public toastController: ToastController) {
+  constructor(private http: HttpClient) {
     this.quizToEdit = {categoryName:'', title:'', questions:[]};
   }
 
@@ -37,7 +36,7 @@ export class EditQuizService {
     return (this.http.get<QuizList[]>('/quizzes'));
   }
 
-  public deleteQuiz(quiz: QuizList) /*:Observable<any> */{
+  public deleteQuiz(quiz: QuizList){
     console.log(quiz);
     const link: any = quiz.linkToEdit;
     console.log(link);
@@ -48,17 +47,4 @@ export class EditQuizService {
     return this.http.get<QuizEdit>('/'+link);
   }
 
-  async showBadRequestToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      //duration: 2000,
-      buttons: [
-        {
-          side: 'end',
-          text: 'close'
-        }
-      ]
-    });
-    toast.present();
-  }
 }

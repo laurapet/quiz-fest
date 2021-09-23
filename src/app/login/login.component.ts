@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       .set('password', password)
       .set('grant_type', 'password');
 
-    this.http.post('http://localhost:8180/auth/realms/quiz-fest/protocol/openid-connect/token', body.toString(), {headers:
+    this.http.post(environment.tokenUrl, body.toString(), {headers:
         new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
           .set('Authorization', 'Basic ' + btoa('quiz-fest:57f24317-2f8b-4056-9308-a779c03c4291'))
     }).subscribe(res =>{

@@ -32,7 +32,6 @@ export class CreatePage {
     this.categoryService.getAllCategorys().subscribe((categories)=>{
       this.categories = [];
       this.categories = categories;
-      console.log(categories);
     });
   }
 
@@ -54,8 +53,6 @@ export class CreatePage {
   }
 
   deleteQuiz(quiz: QuizList, index: number) {
-    //TODO: loadOwnQuizzes benutzen zum sofortigen neuladen FALLS löschen geklappt hat
-    console.log(quiz);
     this.ownQuizzes.splice(index,1);
     this.editQuizService.deleteQuiz(quiz);
   }

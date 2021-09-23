@@ -1,5 +1,4 @@
-import {PlayQuestion} from './PlayQuestion';
-import {Question} from "./Question";
+import {Question} from './Question';
 
 export interface PlayQuiz{
   title: string;
