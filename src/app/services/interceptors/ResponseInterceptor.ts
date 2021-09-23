@@ -15,7 +15,6 @@ export class ResponseInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req.url);
     return next.handle(req).pipe(catchError((err => {
       if(err instanceof HttpErrorResponse){
         if(err.status === 401 && localStorage.getItem('token')){

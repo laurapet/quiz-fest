@@ -100,7 +100,7 @@ export class PlayQuizComponent implements OnInit{
   }
 
   async continue() {
-    await new Promise(f => setTimeout(f, 1500));
+    await new Promise(f => setTimeout(f, 3000));
     if(this.result != null){
       if(this.result.linkToNextQuestion != null && this.result.linkToNextQuestion !== ''){
         this.link = this.result.linkToNextQuestion;
