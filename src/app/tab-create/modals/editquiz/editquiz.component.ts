@@ -68,7 +68,7 @@ export class EditquizComponent implements OnInit {
 
 
   getQuiz() {
-     this.editQuizService.getQuizToEdiz(this.link).subscribe((quiz)=>{
+     this.editQuizService.getQuizToEdit(this.link).subscribe((quiz)=>{
       this.editQuizService.quizToEdit=quiz;
       const category: any = quiz.categoryName;
       this.editQuizService.quizToEdit.categoryName = category.name;

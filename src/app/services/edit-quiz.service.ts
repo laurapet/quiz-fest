@@ -26,25 +26,22 @@ export class EditQuizService {
     return this.http.put<QuizEdit>('/'+link,quizToUpdate);
   }
 
-  public getDefaultAnswers(): Answer[]{
-    return  [{text: 'correct answer', isCorrect: true},
-      {text: 'incorrect answer', isCorrect: false}];
-  }
-
-
   public getOwnQuizzes(): Observable<QuizList[]>{
     return (this.http.get<QuizList[]>('/quizzes'));
   }
 
   public deleteQuiz(quiz: QuizList){
-    console.log(quiz);
-    const link: any = quiz.linkToEdit;
-    console.log(link);
     return this.http.delete('/'+quiz.linkToEdit).subscribe((res) => console.log(res));
   }
 
-  getQuizToEdiz(link: string): Observable<QuizEdit>{
+  getQuizToEdit(link: string): Observable<QuizEdit>{
     return this.http.get<QuizEdit>('/'+link);
+  }
+
+
+  public getDefaultAnswers(): Answer[]{
+    return  [{text: 'correct answer', isCorrect: true},
+      {text: 'incorrect answer', isCorrect: false}];
   }
 
 }

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   acquireToken(username: string, password: string) {
-    const body = new HttpParams()
+    /*const body = new HttpParams()
       .set('username', username)
       .set('password', password)
       .set('grant_type', 'password');
@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res['access_token']);
         this.redirectHome();
       }
-    });
+    });*/
+
+    localStorage.setItem('username', username);
+    localStorage.setItem('token', 'tokentext123');
+    this.redirectHome();
   }
 
   redirectHome(){
